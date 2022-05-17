@@ -1,8 +1,6 @@
 package demoqa;
 
-import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -13,21 +11,13 @@ import static io.qameta.allure.Allure.step;
 
 
 @Tag("RegistrationForm")
-public class RegistrationFormTest {
+public class RegistrationFormTest extends TestBase {
 
     final String firstName = "Jora",
             lastName = "Kirkorov",
             email = "test@yandex.ru",
             mobile = "9042901111",
-            dateOfBirth = "02 Apr 2022",
             CurrentAddress = "45 h, Some st, Some city";
-
-    @BeforeAll
-    static void setUP() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com/";
-        Configuration.holdBrowserOpen = true;
-    }
 
     @AfterAll
     static void closeAll() throws InterruptedException {
