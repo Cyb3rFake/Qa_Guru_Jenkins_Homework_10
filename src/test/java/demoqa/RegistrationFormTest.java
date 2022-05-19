@@ -14,25 +14,23 @@ import static io.qameta.allure.Allure.step;
 public class RegistrationFormTest extends TestBase {
 
     final String firstName = "Jora",
-            lastName = "Kirkorov",
-            email = "test@yandex.ru",
-            mobile = "9042901111",
-            CurrentAddress = "45 h, Some st, Some city";
+                 lastName = "Kirkorov",
+                 email = "test@yandex.ru",
+                 mobile = "9042901111",
+                 CurrentAddress = "45 h, Some st, Some city";
 
-    @AfterAll
-    static void closeAll() throws InterruptedException {
-        closeWindow();
-        closeWebDriver();
-    }
 
     @Test
+    @DisplayName("Successful fill registration test")
     void fillFieldsTest() {
-        step("Open registration form", () -> {
-            open("automation-practice-form");
+            step("Open registration form", () -> {
+            open("/automation-practice-form");
+            $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+            executeJavaScript("$('footer').remove()");
+            executeJavaScript("$('#fixedban').remove()");
         });
 
         step("Fill registration form", () -> {
-            ;
             $("#firstName").setValue(firstName);
             $("#lastName").setValue(lastName);
             $("#userEmail").setValue(email);
@@ -57,7 +55,6 @@ public class RegistrationFormTest extends TestBase {
         });
 
         step("Verify from data", () -> {
-            ;
             $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
             $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Jora Kirkorov"));
             $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text("test@yandex.ru"));
